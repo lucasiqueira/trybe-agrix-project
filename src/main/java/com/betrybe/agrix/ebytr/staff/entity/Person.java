@@ -7,13 +7,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.util.Collection;
 import java.util.Objects;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * Class representing a person.
  */
 @Entity
-public class Person {
+public class Person implements UserDetails {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +32,14 @@ public class Person {
   public Person() {
   }
 
+  /**
+   * Instantiates a new Person.
+   *
+   * @param id       the id
+   * @param username the username
+   * @param password the password
+   * @param role     the role
+   */
   public Person(Long id, String username, String password, Role role) {
     this.id = id;
     this.username = username;
@@ -50,6 +61,31 @@ public class Person {
 
   public void setUsername(String username) {
     this.username = username;
+  }
+
+  @Override
+  public boolean isAccountNonExpired() {
+    return false;
+  }
+
+  @Override
+  public boolean isAccountNonLocked() {
+    return false;
+  }
+
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return false;
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return false;
+  }
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return null;
   }
 
   public String getPassword() {

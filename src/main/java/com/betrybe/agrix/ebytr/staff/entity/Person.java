@@ -29,6 +29,13 @@ public class Person {
   public Person() {
   }
 
+  public Person(Long id, String username, String password, Role role) {
+    this.id = id;
+    this.username = username;
+    this.password = password;
+    this.role = role;
+  }
+
   public Long getId() {
     return id;
   }
@@ -71,7 +78,8 @@ public class Person {
     }
     Person person = (Person) o;
     return Objects.equals(id, person.id) && Objects.equals(username,
-        person.username) && Objects.equals(password, person.password)
+                                                           person.username) && Objects.equals(
+        password, person.password)
         && Objects.equals(role, person.role);
   }
 }

@@ -1,5 +1,6 @@
 package com.betrybe.agrix.advice;
 
+import com.betrybe.agrix.ebytr.staff.exception.PersonNotFoundException;
 import com.betrybe.agrix.services.exceptions.CropNotFoundException;
 import com.betrybe.agrix.services.exceptions.FarmNotFoundException;
 import com.betrybe.agrix.services.exceptions.FertilizerNotFoundException;
@@ -21,7 +22,7 @@ public class GeneralControllerAdvice {
    * @return the response entity
    */
   @ExceptionHandler({FarmNotFoundException.class, CropNotFoundException.class,
-      FertilizerNotFoundException.class})
+      FertilizerNotFoundException.class, PersonNotFoundException.class})
   public ResponseEntity<String> handleException(RuntimeException exception) {
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
   }

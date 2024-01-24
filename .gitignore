@@ -36,3 +36,5 @@ target-coverage*
 .idea
 
 *.iml
+
+.DS_Store

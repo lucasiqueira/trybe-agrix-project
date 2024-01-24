@@ -22,8 +22,13 @@ public class GeneralControllerAdvice {
    * @return the response entity
    */
   @ExceptionHandler({FarmNotFoundException.class, CropNotFoundException.class,
-      FertilizerNotFoundException.class, PersonNotFoundException.class})
+      FertilizerNotFoundException.class})
   public ResponseEntity<String> handleException(RuntimeException exception) {
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+  }
+
+  @ExceptionHandler({PersonNotFoundException.class})
+  public ResponseEntity<String> handlePersonNotFoundException(PersonNotFoundException exception) {
+    return ResponseEntity.status(HttpStatus.FORBIDDEN).body(exception.getMessage());
   }
 }
